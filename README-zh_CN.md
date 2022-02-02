@@ -1,18 +1,18 @@
 # MMRC - Main Method Renderer Call
 
-mmrc is used to conveniently call methods/functions of the main process from within Electron's rendering process. mmrc uses asynchronous messages between the main/rendering feeds, without the potential problems associated with using remote. (The Chinese document is here)[https://github.com/echoldman/mmrc/blob/main/README-zh_CN.md]
+mmrc 是用来方便的在 Electron 的渲染进程里调用主进程的方法/函数。mmrc 使用主 / 渲染进场间的异步消息，不存在使用 remote 可能带来的潜在问题。[英文文档在这里](https://github.com/echoldman/mmrc/blob/main/README.md)
 
-## Install
+## 安装
 
 ~~~bash
 $ npm install --save mmrc
 ~~~
 
-## Usage
+## 使用
 
-#### Main Process
+#### 主进程
 
-- Methods provided in the master process for the rendering process to call
+- 主进程里的提供给渲染进程调用的方法
 
   ~~~js
   async function hello (message) {
@@ -20,7 +20,7 @@ $ npm install --save mmrc
   }
   ~~~
 
-  Or
+  或者
 
   ~~~js
   function hello (message) {
@@ -30,7 +30,7 @@ $ npm install --save mmrc
   }
   ~~~
 
-- Create an instance of mmrc-main and register
+- 创建 mmrc-main 实例并注册
   
   ~~~js
   const { ipcMain } = require('electron')
@@ -42,7 +42,7 @@ $ npm install --save mmrc
 
 #### 渲染进程
 
-- Create an instance of mmrc-renderer and register
+- 创建 mmrc-renderer 实例并注册
 
   ~~~js
   const { ipcRenderer } = require('electron')
@@ -50,7 +50,7 @@ $ npm install --save mmrc
   const mmrc = new MMRCRenderer('mmrc.main.call.method', 'mmrc.renderer.done', 'mmrc.rendere.failed', ipcRenderer)
   ~~~
 
-- Call the hello method of the main process
+- 调用主进程的 hello 方法
 
   ~~~js
   mmrc.callMainMethod('hello', 'this is from renderer.').then(message => {
@@ -60,9 +60,9 @@ $ npm install --save mmrc
   })
   ~~~
 
-  Will get the output, hello: this is from renderer.
+  会得到输出：hello: this is from renderer.
 
-  The first argument to mmrc.callMainMethod() is the name of the method to be called, the subsequent arguments are the parameters of the method to be called, and multiple arguments can be passed in.
-  
-  mmrc.C() method, which is a simplified name for mmrc.callMainMethod()
+  mmrc.callMainMethod() 的第一次参数是要调用的方法名，后面的参数是要调用方法的参数，可以传入多个。
+
+  可以使用 mmrc.C() 方法，是 mmrc.callMainMethod() 的简化名称。
 

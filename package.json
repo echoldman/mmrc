@@ -1,6 +1,6 @@
 {
   "name": "mmrc",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Main Method Renderer Call",
   "scripts": {
   },
@@ -11,5 +11,5 @@
     "call"
   ],
   "author": "Echoldman Dong",
-  "license": "ISC"
+  "license": "MIT"
 }
