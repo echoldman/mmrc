@@ -35,7 +35,7 @@ $ npm install --save mmrc
   ~~~js
   const { ipcMain } = require('electron')
   const MMRCMain = require('mmrc/main')
-  // 完成创建 window 实例后
+  // After you have finished creating the window instance
   const mmrcMain = new MMRCMain('mmrc.main.call.method', 'mmrc.renderer.done', 'mmrc.renderer.failed', ipcMain, win)
   mmrcMain.addMethod(hello, 'hello')
   ~~~
