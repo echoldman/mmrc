@@ -1,6 +1,6 @@
 # MMRC - Main Method Renderer Call
 
-mmrc is used to conveniently call methods/functions of the main process from within Electron's rendering process. mmrc uses asynchronous messages between the main/rendering feeds, without the potential problems associated with using remote. [The Chinese document is here](https://github.com/echoldman/mmrc/blob/main/README-zh_CN.md)
+mmrc is used to conveniently call methods/functions of the main process from within Electron's rendering process. mmrc uses asynchronous messages between the main/rendering feeds, without the potential problems associated with using remote. [中文文档在这里](https://github.com/echoldman/mmrc/blob/main/README-zh_CN.md)
 
 ## Install
 
@@ -40,7 +40,7 @@ $ npm install --save mmrc
   mmrcMain.addMethod(hello, 'hello')
   ~~~
 
-#### 渲染进程
+#### Renderer Process
 
 - Create an instance of mmrc-renderer and register
 

@@ -1,6 +1,6 @@
 # MMRC - Main Method Renderer Call
 
-mmrc 是用来方便的在 Electron 的渲染进程里调用主进程的方法/函数。mmrc 使用主 / 渲染进场间的异步消息，不存在使用 remote 可能带来的潜在问题。[英文文档在这里](https://github.com/echoldman/mmrc/blob/main/README.md)
+mmrc 是用来方便的在 Electron 的渲染进程里调用主进程的方法/函数。mmrc 使用主 / 渲染进场间的异步消息，不存在使用 remote 可能带来的潜在问题。[The English document is here](https://github.com/echoldman/mmrc/blob/main/README.md)
 
 ## 安装
 
