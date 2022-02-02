@@ -36,7 +36,7 @@ $ npm install --save mmrc
   const { ipcMain } = require('electron')
   const MMRCMain = require('mmrc/main')
   // After you have finished creating the window instance
-  const mmrcMain = new MMRCMain('mmrc.main.call.method', 'mmrc.renderer.done', 'mmrc.renderer.failed', ipcMain, win)
+  const mmrcMain = new MMRCMain(ipcMain, win)
   mmrcMain.addMethod(hello, 'hello')
   ~~~
 
@@ -47,7 +47,7 @@ $ npm install --save mmrc
   ~~~js
   const { ipcRenderer } = require('electron')
   const MMRCRenderer = require('mmrc/renderer')
-  const mmrc = new MMRCRenderer('mmrc.main.call.method', 'mmrc.renderer.done', 'mmrc.rendere.failed', ipcRenderer)
+  const mmrc = new MMRCRenderer(ipcRenderer)
   ~~~
 
 - Call the hello method of the main process
@@ -65,4 +65,18 @@ $ npm install --save mmrc
   The first argument to mmrc.callMainMethod() is the name of the method to be called, the subsequent arguments are the parameters of the method to be called, and multiple arguments can be passed in.
   
   mmrc.C() method, which is a simplified name for mmrc.callMainMethod()
+
+#### About the three "messages"
+
+mmrc uses three messages 'mmrc.main.call.method', 'mmrc.renderer.done', 'mmrc.rendere.failed' as a way to communicate between the main process and the renderer process, so when you have your own message, keep it different from the three messages or use your own messages. As follows.
+
+~~~js
+// main process
+const mmrcMain = new MMRCMain(ipcMain, win, 'my.main.call', 'my.renderer.done', 'my.renderer.failed')
+
+// renderer process
+const mmrc = new MMRCRenderer(ipcRenderer, 'my.main.call', 'my.renderer.done', 'my.renderer.failed')
+~~~
+
+Just make sure that these three messages are not the same as yours.
 

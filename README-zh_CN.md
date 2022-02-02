@@ -36,7 +36,7 @@ $ npm install --save mmrc
   const { ipcMain } = require('electron')
   const MMRCMain = require('mmrc/main')
   // 完成创建 window 实例后
-  const mmrcMain = new MMRCMain('mmrc.main.call.method', 'mmrc.renderer.done', 'mmrc.renderer.failed', ipcMain, win)
+  const mmrcMain = new MMRCMain(ipcMain, win)
   mmrcMain.addMethod(hello, 'hello')
   ~~~
 
@@ -47,7 +47,7 @@ $ npm install --save mmrc
   ~~~js
   const { ipcRenderer } = require('electron')
   const MMRCRenderer = require('mmrc/renderer')
-  const mmrc = new MMRCRenderer('mmrc.main.call.method', 'mmrc.renderer.done', 'mmrc.rendere.failed', ipcRenderer)
+  const mmrc = new MMRCRenderer(ipcRenderer)
   ~~~
 
 - 调用主进程的 hello 方法
@@ -65,4 +65,18 @@ $ npm install --save mmrc
   mmrc.callMainMethod() 的第一次参数是要调用的方法名，后面的参数是要调用方法的参数，可以传入多个。
 
   可以使用 mmrc.C() 方法，是 mmrc.callMainMethod() 的简化名称。
+
+#### 关于三个“消息”名称
+
+mmrc 使用了三个消息 'mmrc.main.call.method', 'mmrc.renderer.done', 'mmrc.rendere.failed' 作为在主进程和渲染进程之间的通信方式，所以当你有自己的消息时，要和三个消息保持不一样，或者在注册时使用你自己的消息。如下：
+
+~~~js
+// 主进程
+const mmrcMain = new MMRCMain(ipcMain, win, 'my.main.call', 'my.renderer.done', 'my.renderer.failed')
+
+// 渲染进程
+const mmrc = new MMRCRenderer(ipcRenderer, 'my.main.call', 'my.renderer.done', 'my.renderer.failed')
+~~~
+
+保证这个三个消息和你的消息不一样就可以。
 
