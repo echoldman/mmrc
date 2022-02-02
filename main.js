@@ -1,7 +1,12 @@
 // mmrc - main method renderer call
 
 class Main {
-  constructor (mainCallMethodEventName, rendererDoneEventName, rendererFailedEventName, ipcMain, window) {
+  constructor (
+                ipcMain, window,
+                mainCallMethodEventName = 'mmrc.main.call.method',
+                rendererDoneEventName = 'mmrc.renderer.done',
+                rendererFailedEventName = 'mmrc.renderer.failed'
+                ) {
     this.methodMap = {}
 
     ipcMain.on(mainCallMethodEventName, (event, methodName, mid, ...params) => {

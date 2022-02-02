@@ -11,7 +11,12 @@ function generateMID () {
 }
 
 class Renderer {
-  constructor (mainCallMethodEventName, rendererDoneEventName, rendererFailedEventName, ipcRenderer) {
+  constructor (
+                ipcRenderer,
+                mainCallMethodEventName = 'mmrc.main.call.method',
+                rendererDoneEventName = 'mmrc.renderer.done',
+                rendererFailedEventName = 'mmrc.renderer.failed'
+                ) {
     this.mainMethodCallbackMap = {}
 
     this.ipcRenderer = ipcRenderer
