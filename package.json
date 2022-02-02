@@ -1,9 +1,8 @@
 {
   "name": "mmrc",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Main Method Renderer Call",
-  "scripts": {
-  },
+  "scripts": {},
   "keywords": [
     "main",
     "method",
